@@ -1,0 +1,17 @@
+- name: some fun managing a web service with ansible
+  hosts: all
+
+  pre_tasks:
+    - name: making sure virtualenv is installed
+      apt: pkg=python-virtualenv
+      sudo: yes
+
+  vars:
+    supervisor_home: ~/apps/supervisor
+    port: 5678
+
+  roles:
+    - role: supervise
+      name: web-server
+      command: python -m SimpleHTTPServer {{ port }}
+      directory: ~/public/web
