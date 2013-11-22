@@ -1,13 +1,17 @@
-Demonstrating using ansible & supervisord to manage services.
+## Using [ansible](http://ansibleworks.com) & [supervisord](http://supervisord.org) to manage services.
 
-Try it out:
+The included [playbook](https://github.com/eggsby/ansible-supervisor-example/blob/master/playbook.yaml) uses the [supervise](https://github.com/eggsby/ansible-supervise) role to install & run a simple python http service.
+
+### Try it out:
 
     git clone https://github.com/eggsby/ansible-supervisor-example
     cd ansible-supervisor-example
     git submodule init && git submodule update
     ansible-playbook -c local -i 'localhost,' playbook.yaml
 
-Now you should have a web server running at port 5678. Cool!
+Now you should have a web server running at port 5678.
+
+Cool!
 
     echo 'ansible rocks!' > ~/public/web/index.html
     curl localhost:5678
@@ -22,5 +26,4 @@ Let's make a change to our service...
     ansible-playbook -c local -i 'localhost,' playbook.yaml -e port=1234
     curl localhost:1234
 
-cool, ansible rocks!
-check out [playbook.yaml](https://github.com/eggsby/ansible-supervisor-example/blob/master/playbook.yaml) for more information
+ansible rocks!
