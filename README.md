@@ -21,3 +21,5 @@ It is easy to use supervisor to manage your services
     vagrant ssh -c '~/bin/supervisorctl status'
     vagrant ssh -c 'seq 3 > ~/public/web/index.html'
     curl localhost:8080
+    vagrant ssh -c '~/bin/supervisorctl stop webserver'
+    curl localhost:8080
