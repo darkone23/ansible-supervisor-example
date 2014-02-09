@@ -4,26 +4,20 @@ The included [playbook](https://github.com/eggsby/ansible-supervisor-example/blo
 
 ### Try it out:
 
+First, install [ansible](http://docs.ansible.com/intro_installation.html) and [vagrant](https://docs.vagrantup.com/v2/installation/index.html)
+
+Then:
+
     git clone https://github.com/eggsby/ansible-supervisor-example
     cd ansible-supervisor-example
-    git submodule init && git submodule update
-    ansible-playbook -c local -i 'localhost,' playbook.yaml
+    ./setup.sh
 
-Now you should have a web server running at port 5678.
+Now you should have a web server running in a VM, accessible through port 8080
 
 Cool!
 
-    echo 'ansible rocks!' > ~/public/web/index.html
-    curl localhost:5678
+It is easy to use supervisor to manage your services
 
-Some aliases were installed to make it easier to work with supervisor for managing your services.
-
-    . ~/.bashrc
-    supervisorctl status
-
-Let's make a change to our service...
-
-    ansible-playbook -c local -i 'localhost,' playbook.yaml -e port=1234
-    curl localhost:1234
-
-ansible rocks!
+    vagrant ssh -c '~/bin/supervisorctl status'
+    vagrant ssh -c 'seq 3 > ~/public/web/index.html'
+    curl localhost:8080
